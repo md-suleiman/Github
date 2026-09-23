@@ -1,9 +1,11 @@
 ﻿<!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Like the session, share your feedback, and vote for your ice cream flavour — Git and GitHub Workshop at RUAS Campus.">
+  <meta name="description"
+    content="Like the session, share your feedback, and vote for your ice cream flavour — Git and GitHub Workshop at RUAS Campus.">
   <title>Workshop Vibes · Git &amp; GitHub Workshop</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,353 +13,375 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
 </head>
+
 <body>
 
-<canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-<!-- ── Header ──────────────────────────────────────────────── -->
-<header class="site-header" role="banner">
-  <div class="site-header__inner">
-    <a class="site-header__logo" href="#">RUAS<span> Campus</span></a>
-    <span class="site-header__badge">Workshop Vibes 🎉</span>
-  </div>
-</header>
-
-<!-- ── Hero ────────────────────────────────────────────────── -->
-<div class="hero" role="region" aria-label="Workshop introduction">
-  <span class="hero__emoji" aria-hidden="true">🚀</span>
-  <div class="hero__tag">RUAS Campus · Sept 2026</div>
-  <h1>Git &amp; GitHub Workshop</h1>
-  <p class="hero__sub">
-    From your very first commit to collaborating on real projects —
-    everything you need to know about Git and GitHub in one session.
-  </p>
-  <div class="hero__meta">
-    <span class="hero__meta-item">📅 22 September 2026</span>
-    <span class="hero__meta-item">⏱ 3 hours</span>
-    <span class="hero__meta-item">👩‍💻 Hands-on</span>
-  </div>
-
-  <!-- One big like button for the whole workshop -->
-  <div class="hero-like-wrap">
-    <button class="hero-like-btn" id="heroLikeBtn" onclick="toggleHeroLike()" aria-label="Like this workshop" aria-pressed="false">
-      <span class="heart" aria-hidden="true">🤍</span>
-      <span id="heroLikeLabel">I loved this workshop!</span>
-      &nbsp;·&nbsp;
-      <span id="heroLikeCount">47</span>
-    </button>
-    <span class="like-total" id="likeTotal">47 attendees liked this session</span>
-  </div>
-</div>
-
-<!-- ── Main ────────────────────────────────────────────────── -->
-<main class="page">
-
-  <!-- ── 1. Feedback form ──────────────────────────────────── -->
-  <section aria-labelledby="feedback-heading">
-    <div class="section-label" id="feedback-heading">💬 &nbsp;Your Feedback</div>
-    <div class="card">
-      <form id="feedbackForm" novalidate>
-
-        <!-- Name + Email -->
-        <div class="form-row">
-          <div class="form-group">
-            <label for="fb-name">Your Name</label>
-            <input type="text" id="fb-name" placeholder="Suneha" autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="fb-email">Email <span class="opt">(optional)</span></label>
-            <input type="email" id="fb-email" placeholder="you@example.com" autocomplete="email">
-          </div>
-        </div>
-
-        <!-- Star rating -->
-        <div class="form-group">
-          <label>Overall rating</label>
-          <div class="stars" role="radiogroup" aria-label="Star rating">
-            <input type="radio" id="s5" name="rating" value="5"><label for="s5" title="5 stars">★</label>
-            <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">★</label>
-            <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">★</label>
-            <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">★</label>
-            <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">★</label>
-          </div>
-        </div>
-
-        <!-- What did you enjoy -->
-        <div class="form-group">
-          <label>What did you enjoy most?</label>
-          <div class="radio-group" role="group" aria-label="What you enjoyed">
-            <div class="radio-pill"><input type="radio" id="enj-handson" name="enjoyed" value="Hands-on activities"><label for="enj-handson">Hands-on activities</label></div>
-            <div class="radio-pill"><input type="radio" id="enj-explain" name="enjoyed" value="Clear explanations"><label for="enj-explain">Clear explanations</label></div>
-            <div class="radio-pill"><input type="radio" id="enj-collab"  name="enjoyed" value="Team collaboration"><label for="enj-collab">Team collaboration</label></div>
-            <div class="radio-pill"><input type="radio" id="enj-pace"    name="enjoyed" value="The pace"><label for="enj-pace">The pace</label></div>
-            <div class="radio-pill"><input type="radio" id="enj-content" name="enjoyed" value="The content"><label for="enj-content">The content</label></div>
-          </div>
-        </div>
-
-        <!-- What could be improved -->
-        <div class="form-group">
-          <label>What could be improved?</label>
-          <div class="radio-group" role="group" aria-label="What to improve">
-            <div class="radio-pill"><input type="radio" id="imp-more"   name="improved" value="More hands-on time"><label for="imp-more">More hands-on time</label></div>
-            <div class="radio-pill"><input type="radio" id="imp-slower" name="improved" value="Slower pace"><label for="imp-slower">Slower pace</label></div>
-            <div class="radio-pill"><input type="radio" id="imp-adv"    name="improved" value="More advanced topics"><label for="imp-adv">More advanced topics</label></div>
-            <div class="radio-pill"><input type="radio" id="imp-proj"   name="improved" value="Real project examples"><label for="imp-proj">Real project examples</label></div>
-            <div class="radio-pill"><input type="radio" id="imp-notes"  name="improved" value="Better notes / slides"><label for="imp-notes">Better notes</label></div>
-          </div>
-        </div>
-
-        <!-- Open comment -->
-        <div class="form-group">
-          <label for="fb-comment">Anything else you'd like to share?</label>
-          <textarea id="fb-comment" placeholder="Any thoughts, suggestions, or shoutouts to the organisers..."></textarea>
-        </div>
-
-        <!-- Recommend -->
-        <div class="form-group">
-          <label>Would you recommend this workshop to a friend?</label>
-          <div class="recommend-group" role="group" aria-label="Recommendation">
-            <div class="rec-btn">
-              <input type="radio" id="rec-yes" name="recommend" value="yes">
-              <label for="rec-yes">👍 Yes, definitely</label>
-            </div>
-            <div class="rec-btn no">
-              <input type="radio" id="rec-no" name="recommend" value="no">
-              <label for="rec-no">👎 Not really</label>
-            </div>
-          </div>
-        </div>
-
-        <button type="submit" class="submit-btn" id="feedbackSubmitBtn">
-          <span>📨</span> Send Feedback
-        </button>
-        <div class="toast" id="feedbackToast" role="alert" aria-live="polite">
-          ✅ &nbsp;Thanks for your feedback — it really helps us improve the next one!
-        </div>
-
-      </form>
+  <!-- ── Header ──────────────────────────────────────────────── -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+      <a class="site-header__logo" href="#">RUAS<span> Campus</span></a>
+      <span class="site-header__badge">Workshop Vibes 🎉</span>
     </div>
-  </section>
+  </header>
 
-  <!-- ── 2. Ice cream requests ──────────────────────────────── -->
-  <section aria-labelledby="icecream-heading">
-    <div class="section-label" id="icecream-heading">🍦 &nbsp;Ice Cream Requests</div>
-    <div class="card">
-      <p class="ice-intro">
-        We're treating everyone after the session! Vote for your flavour so we order the right mix. 🎉
-      </p>
-      <form id="iceForm" novalidate>
-        <div class="ice-grid" role="group" aria-label="Ice cream flavour selection">
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-vanilla" value="Vanilla"><label for="ic-vanilla"><span class="flavour-emoji">🍨</span>Vanilla</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-choc"    value="Chocolate"><label for="ic-choc"><span class="flavour-emoji">🍫</span>Chocolate</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-straw"   value="Strawberry"><label for="ic-straw"><span class="flavour-emoji">🍓</span>Strawberry</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-mango"   value="Mango"><label for="ic-mango"><span class="flavour-emoji">🥭</span>Mango</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-mint"    value="Mint Choc Chip"><label for="ic-mint"><span class="flavour-emoji">🌿</span>Mint Choc</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-butter"  value="Butterscotch"><label for="ic-butter"><span class="flavour-emoji">🧁</span>Butterscotch</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-oreo"    value="Cookies and Cream"><label for="ic-oreo"><span class="flavour-emoji">🍪</span>Cookies &amp; Cream</label></div>
-          <div class="ice-option"><input type="radio" name="icecream" id="ic-pista"   value="Pistachio"><label for="ic-pista"><span class="flavour-emoji">🫒</span>Pistachio</label></div>
-        </div>
-        <button type="submit" class="ice-submit-btn" id="iceSubmitBtn">
-          <span>🍦</span> Cast my vote
-        </button>
-        <div class="toast" id="iceToast" role="alert" aria-live="polite">
-          🍦 &nbsp;Vote locked in — see you at the ice cream stand!
-        </div>
-      </form>
+  <!-- ── Hero ────────────────────────────────────────────────── -->
+  <div class="hero" role="region" aria-label="Workshop introduction">
+    <span class="hero__emoji" aria-hidden="true">🚀</span>
+    <div class="hero__tag">RUAS Campus · Sept 2026</div>
+    <h1>Git &amp; GitHub Workshop</h1>
+    <p class="hero__sub">
+      From your very first commit to collaborating on real projects —
+      everything you need to know about Git and GitHub in one session.
+    </p>
+    <div class="hero__meta">
+      <span class="hero__meta-item">📅 22 September 2026</span>
+      <span class="hero__meta-item">⏱ 3 hours</span>
+      <span class="hero__meta-item">👩‍💻 Hands-on</span>
+    </div>
 
-      <!-- Live leaderboard -->
-      <div class="ice-board">
-        <div class="ice-board__title">Current votes</div>
-        <div id="iceBars"></div>
+    <!-- One big like button for the whole workshop -->
+    <div class="hero-like-wrap">
+      <button class="hero-like-btn" id="heroLikeBtn" onclick="toggleHeroLike()" aria-label="Like this workshop"
+        aria-pressed="false">
+        <span class="heart" aria-hidden="true">🤍</span>
+        <span id="heroLikeLabel">I loved this workshop!</span>
+        &nbsp;·&nbsp;
+        <span id="heroLikeCount">47</span>
+      </button>
+      <span class="like-total" id="likeTotal">47 attendees liked this session</span>
+    </div>
+  </div>
+
+  <!-- ── Main ────────────────────────────────────────────────── -->
+  <main class="page">
+
+    <!-- ── 1. Feedback form ──────────────────────────────────── -->
+    <section aria-labelledby="feedback-heading">
+      <div class="section-label" id="feedback-heading">💬 &nbsp;Your Feedback</div>
+      <div class="card">
+        <form id="feedbackForm" novalidate>
+
+          <!-- Name + Email -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fb-name">Your Name</label>
+              <input type="text" id="fb-name" placeholder="Name" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="fb-email">Email <span class="opt">(optional)</span></label>
+              <input type="email" id="fb-email" placeholder="you@example.com" autocomplete="email">
+            </div>
+          </div>
+
+          <!-- Star rating -->
+          <div class="form-group">
+            <label>Overall rating</label>
+            <div class="stars" role="radiogroup" aria-label="Star rating">
+              <input type="radio" id="s5" name="rating" value="5"><label for="s5" title="5 stars">★</label>
+              <input type="radio" id="s4" name="rating" value="4"><label for="s4" title="4 stars">★</label>
+              <input type="radio" id="s3" name="rating" value="3"><label for="s3" title="3 stars">★</label>
+              <input type="radio" id="s2" name="rating" value="2"><label for="s2" title="2 stars">★</label>
+              <input type="radio" id="s1" name="rating" value="1"><label for="s1" title="1 star">★</label>
+            </div>
+          </div>
+
+          <!-- What did you enjoy -->
+          <div class="form-group">
+            <label>What did you enjoy most?</label>
+            <div class="radio-group" role="group" aria-label="What you enjoyed">
+              <div class="radio-pill"><input type="radio" id="enj-handson" name="enjoyed"
+                  value="Hands-on activities"><label for="enj-handson">Hands-on activities</label></div>
+              <div class="radio-pill"><input type="radio" id="enj-explain" name="enjoyed"
+                  value="Clear explanations"><label for="enj-explain">Clear explanations</label></div>
+              <div class="radio-pill"><input type="radio" id="enj-collab" name="enjoyed"
+                  value="Team collaboration"><label for="enj-collab">Team collaboration</label></div>
+              <div class="radio-pill"><input type="radio" id="enj-pace" name="enjoyed" value="The pace"><label
+                  for="enj-pace">The pace</label></div>
+              <div class="radio-pill"><input type="radio" id="enj-content" name="enjoyed" value="The content"><label
+                  for="enj-content">The content</label></div>
+            </div>
+          </div>
+
+          <!-- What could be improved -->
+          <div class="form-group">
+            <label>What could be improved?</label>
+            <div class="radio-group" role="group" aria-label="What to improve">
+              <div class="radio-pill"><input type="radio" id="imp-more" name="improved"
+                  value="More hands-on time"><label for="imp-more">More hands-on time</label></div>
+              <div class="radio-pill"><input type="radio" id="imp-slower" name="improved" value="Slower pace"><label
+                  for="imp-slower">Slower pace</label></div>
+              <div class="radio-pill"><input type="radio" id="imp-adv" name="improved"
+                  value="More advanced topics"><label for="imp-adv">More advanced topics</label></div>
+              <div class="radio-pill"><input type="radio" id="imp-proj" name="improved"
+                  value="Real project examples"><label for="imp-proj">Real project examples</label></div>
+              <div class="radio-pill"><input type="radio" id="imp-notes" name="improved"
+                  value="Better notes / slides"><label for="imp-notes">Better notes</label></div>
+            </div>
+          </div>
+
+          <!-- Open comment -->
+          <div class="form-group">
+            <label for="fb-comment">Anything else you'd like to share?</label>
+            <textarea id="fb-comment"
+              placeholder="Any thoughts, suggestions, or shoutouts to the organisers..."></textarea>
+          </div>
+
+          <!-- Recommend -->
+          <div class="form-group">
+            <label>Would you recommend this workshop to a friend?</label>
+            <div class="recommend-group" role="group" aria-label="Recommendation">
+              <div class="rec-btn">
+                <input type="radio" id="rec-yes" name="recommend" value="yes">
+                <label for="rec-yes">👍 Yes, definitely</label>
+              </div>
+              <div class="rec-btn no">
+                <input type="radio" id="rec-no" name="recommend" value="no">
+                <label for="rec-no">👎 Not really</label>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn" id="feedbackSubmitBtn">
+            <span>📨</span> Send Feedback
+          </button>
+          <div class="toast" id="feedbackToast" role="alert" aria-live="polite">
+            ✅ &nbsp;Thanks for your feedback — it really helps us improve the next one!
+          </div>
+
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <!-- ── 2. Ice cream requests ──────────────────────────────── -->
+    <section aria-labelledby="icecream-heading">
+      <div class="section-label" id="icecream-heading">🍦 &nbsp;Ice Cream Requests</div>
+      <div class="card">
+        <p class="ice-intro">
+          We're treating everyone after the session! Vote for your flavour so we order the right mix. 🎉
+        </p>
+        <form id="iceForm" novalidate>
+          <div class="ice-grid" role="group" aria-label="Ice cream flavour selection">
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-vanilla" value="Vanilla"><label
+                for="ic-vanilla"><span class="flavour-emoji">🍨</span>Vanilla</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-choc" value="Chocolate"><label
+                for="ic-choc"><span class="flavour-emoji">🍫</span>Chocolate</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-straw" value="Strawberry"><label
+                for="ic-straw"><span class="flavour-emoji">🍓</span>Strawberry</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-mango" value="Mango"><label
+                for="ic-mango"><span class="flavour-emoji">🥭</span>Mango</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-mint" value="Mint Choc Chip"><label
+                for="ic-mint"><span class="flavour-emoji">🌿</span>Mint Choc</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-butter" value="Butterscotch"><label
+                for="ic-butter"><span class="flavour-emoji">🧁</span>Butterscotch</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-oreo" value="Cookies and Cream"><label
+                for="ic-oreo"><span class="flavour-emoji">🍪</span>Cookies &amp; Cream</label></div>
+            <div class="ice-option"><input type="radio" name="icecream" id="ic-pista" value="Pistachio"><label
+                for="ic-pista"><span class="flavour-emoji">🫒</span>Pistachio</label></div>
+          </div>
+          <button type="submit" class="ice-submit-btn" id="iceSubmitBtn">
+            <span>🍦</span> Cast my vote
+          </button>
+          <div class="toast" id="iceToast" role="alert" aria-live="polite">
+            🍦 &nbsp;Vote locked in — see you at the ice cream stand!
+          </div>
+        </form>
 
-<footer class="site-footer">
-  <p>Made with ❤️ at RUAS Campus · Git &amp; GitHub Workshop</p>
-</footer>
+        <!-- Live leaderboard -->
+        <div class="ice-board">
+          <div class="ice-board__title">Current votes</div>
+          <div id="iceBars"></div>
+        </div>
+      </div>
+    </section>
 
-<!-- ── Scripts ──────────────────────────────────────────────── -->
-<script>
-/* ═══════════════════════════════════════════════════════
-   THREE.JS — animated particle + wireframe background
-═══════════════════════════════════════════════════════ */
-(function () {
-  var canvas   = document.getElementById('bg-canvas');
-  var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  </main>
 
-  var scene  = new THREE.Scene();
-  var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 120);
-  camera.position.z = 22;
+  <footer class="site-footer">
+    <p>Made with ❤️ at RUAS Campus · Git &amp; GitHub Workshop</p>
+  </footer>
 
-  /* Particles */
-  var N      = 380;
-  var posArr = new Float32Array(N * 3);
-  var colArr = new Float32Array(N * 3);
-  var palette = [
-    new THREE.Color(0xf05033),
-    new THREE.Color(0x7a5cff),
-    new THREE.Color(0x00bcd4),
-    new THREE.Color(0xffffff)
-  ];
-  for (var i = 0; i < N; i++) {
-    posArr[i*3]   = (Math.random() - 0.5) * 75;
-    posArr[i*3+1] = (Math.random() - 0.5) * 55;
-    posArr[i*3+2] = (Math.random() - 0.5) * 32;
-    var c = palette[Math.floor(Math.random() * palette.length)];
-    colArr[i*3]   = c.r;
-    colArr[i*3+1] = c.g;
-    colArr[i*3+2] = c.b;
-  }
-  var pGeom = new THREE.BufferGeometry();
-  pGeom.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
-  pGeom.setAttribute('color',    new THREE.BufferAttribute(colArr, 3));
-  var pMat  = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.6 });
-  scene.add(new THREE.Points(pGeom, pMat));
+  <!-- ── Scripts ──────────────────────────────────────────────── -->
+  <script>
+    /* ═══════════════════════════════════════════════════════
+       THREE.JS — animated particle + wireframe background
+    ═══════════════════════════════════════════════════════ */
+    (function () {
+      var canvas = document.getElementById('bg-canvas');
+      var renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(window.innerWidth, window.innerHeight);
 
-  /* Wireframe shapes */
-  var shapes = [];
-  var cfgs = [
-    { g: new THREE.IcosahedronGeometry(2.4, 0),         col: 0xf05033, x: -14,  y:  7,  z: -8,  sx: 0.004, sy: 0.006, sz: 0 },
-    { g: new THREE.TorusGeometry(1.6, 0.42, 9, 20),     col: 0x7a5cff, x:  16,  y: -5,  z:-10,  sx: 0.005, sy: 0.004, sz:0.002 },
-    { g: new THREE.OctahedronGeometry(1.7),              col: 0x00bcd4, x:   9,  y:  9,  z: -5,  sx: 0.006, sy: 0.005, sz: 0 },
-    { g: new THREE.TorusKnotGeometry(1.1, 0.28, 60, 8), col: 0xf05033, x: -17,  y: -7,  z: -9,  sx: 0.003, sy: 0.005, sz:0.004 },
-    { g: new THREE.IcosahedronGeometry(1.0, 0),          col: 0x7a5cff, x:   4,  y:-11,  z: -4,  sx: 0.007, sy: 0.004, sz: 0 },
-    { g: new THREE.OctahedronGeometry(0.95),             col: 0x00bcd4, x:  -5,  y: 13,  z: -6,  sx: 0.005, sy: 0.007, sz:0.003 }
-  ];
-  cfgs.forEach(function (c) {
-    var mat  = new THREE.MeshBasicMaterial({ color: c.col, wireframe: true, transparent: true, opacity: 0.18 });
-    var mesh = new THREE.Mesh(c.g, mat);
-    mesh.position.set(c.x, c.y, c.z);
-    mesh.userData = { sx: c.sx, sy: c.sy, sz: c.sz };
-    scene.add(mesh);
-    shapes.push(mesh);
-  });
+      var scene = new THREE.Scene();
+      var camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 120);
+      camera.position.z = 22;
 
-  /* Mouse parallax */
-  var mx = 0, my = 0, tx = 0, ty = 0;
-  document.addEventListener('mousemove', function (e) {
-    mx = (e.clientX / window.innerWidth  - 0.5) * 2;
-    my = (e.clientY / window.innerHeight - 0.5) * 2;
-  });
+      /* Particles */
+      var N = 380;
+      var posArr = new Float32Array(N * 3);
+      var colArr = new Float32Array(N * 3);
+      var palette = [
+        new THREE.Color(0xf05033),
+        new THREE.Color(0x7a5cff),
+        new THREE.Color(0x00bcd4),
+        new THREE.Color(0xffffff)
+      ];
+      for (var i = 0; i < N; i++) {
+        posArr[i * 3] = (Math.random() - 0.5) * 75;
+        posArr[i * 3 + 1] = (Math.random() - 0.5) * 55;
+        posArr[i * 3 + 2] = (Math.random() - 0.5) * 32;
+        var c = palette[Math.floor(Math.random() * palette.length)];
+        colArr[i * 3] = c.r;
+        colArr[i * 3 + 1] = c.g;
+        colArr[i * 3 + 2] = c.b;
+      }
+      var pGeom = new THREE.BufferGeometry();
+      pGeom.setAttribute('position', new THREE.BufferAttribute(posArr, 3));
+      pGeom.setAttribute('color', new THREE.BufferAttribute(colArr, 3));
+      var pMat = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.6 });
+      scene.add(new THREE.Points(pGeom, pMat));
 
-  /* Resize */
-  window.addEventListener('resize', function () {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-  });
+      /* Wireframe shapes */
+      var shapes = [];
+      var cfgs = [
+        { g: new THREE.IcosahedronGeometry(2.4, 0), col: 0xf05033, x: -14, y: 7, z: -8, sx: 0.004, sy: 0.006, sz: 0 },
+        { g: new THREE.TorusGeometry(1.6, 0.42, 9, 20), col: 0x7a5cff, x: 16, y: -5, z: -10, sx: 0.005, sy: 0.004, sz: 0.002 },
+        { g: new THREE.OctahedronGeometry(1.7), col: 0x00bcd4, x: 9, y: 9, z: -5, sx: 0.006, sy: 0.005, sz: 0 },
+        { g: new THREE.TorusKnotGeometry(1.1, 0.28, 60, 8), col: 0xf05033, x: -17, y: -7, z: -9, sx: 0.003, sy: 0.005, sz: 0.004 },
+        { g: new THREE.IcosahedronGeometry(1.0, 0), col: 0x7a5cff, x: 4, y: -11, z: -4, sx: 0.007, sy: 0.004, sz: 0 },
+        { g: new THREE.OctahedronGeometry(0.95), col: 0x00bcd4, x: -5, y: 13, z: -6, sx: 0.005, sy: 0.007, sz: 0.003 }
+      ];
+      cfgs.forEach(function (c) {
+        var mat = new THREE.MeshBasicMaterial({ color: c.col, wireframe: true, transparent: true, opacity: 0.18 });
+        var mesh = new THREE.Mesh(c.g, mat);
+        mesh.position.set(c.x, c.y, c.z);
+        mesh.userData = { sx: c.sx, sy: c.sy, sz: c.sz };
+        scene.add(mesh);
+        shapes.push(mesh);
+      });
 
-  /* Animate */
-  var particles = scene.children[0];
-  var t = 0;
-  function animate() {
-    requestAnimationFrame(animate);
-    t += 0.005;
-    tx += (mx - tx) * 0.04;
-    ty += (my - ty) * 0.04;
+      /* Mouse parallax */
+      var mx = 0, my = 0, tx = 0, ty = 0;
+      document.addEventListener('mousemove', function (e) {
+        mx = (e.clientX / window.innerWidth - 0.5) * 2;
+        my = (e.clientY / window.innerHeight - 0.5) * 2;
+      });
 
-    particles.rotation.y = t * 0.055 + tx * 0.12;
-    particles.rotation.x = ty * 0.06;
+      /* Resize */
+      window.addEventListener('resize', function () {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
 
-    shapes.forEach(function (s, i) {
-      s.rotation.x += s.userData.sx;
-      s.rotation.y += s.userData.sy;
-      s.rotation.z += s.userData.sz;
-      s.position.y += Math.sin(t + i * 1.1) * 0.006;
+      /* Animate */
+      var particles = scene.children[0];
+      var t = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        t += 0.005;
+        tx += (mx - tx) * 0.04;
+        ty += (my - ty) * 0.04;
+
+        particles.rotation.y = t * 0.055 + tx * 0.12;
+        particles.rotation.x = ty * 0.06;
+
+        shapes.forEach(function (s, i) {
+          s.rotation.x += s.userData.sx;
+          s.rotation.y += s.userData.sy;
+          s.rotation.z += s.userData.sz;
+          s.position.y += Math.sin(t + i * 1.1) * 0.006;
+        });
+
+        camera.position.x += (tx * 1.8 - camera.position.x) * 0.025;
+        camera.position.y += (-ty * 1.2 - camera.position.y) * 0.025;
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    })();
+
+    /* ═══════════════════════════════════════════════════════
+       HERO LIKE
+    ═══════════════════════════════════════════════════════ */
+    function toggleHeroLike() {
+      var btn = document.getElementById('heroLikeBtn');
+      var label = document.getElementById('heroLikeLabel');
+      var count = document.getElementById('heroLikeCount');
+      var total = document.getElementById('likeTotal');
+      var heart = btn.querySelector('.heart');
+      var liked = btn.classList.toggle('liked');
+      var n = parseInt(count.textContent);
+
+      count.textContent = liked ? n + 1 : n - 1;
+      heart.textContent = liked ? '❤️' : '🤍';
+      label.textContent = liked ? 'Liked!' : 'I loved this workshop!';
+      total.textContent = (liked ? n + 1 : n - 1) + ' attendees liked this session';
+      btn.setAttribute('aria-pressed', liked);
+
+      heart.style.animation = 'none';
+      requestAnimationFrame(function () { heart.style.animation = ''; });
+    }
+
+    /* ═══════════════════════════════════════════════════════
+       FEEDBACK FORM
+    ═══════════════════════════════════════════════════════ */
+    document.getElementById('feedbackForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = document.getElementById('feedbackSubmitBtn');
+      var toast = document.getElementById('feedbackToast');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      setTimeout(function () {
+        toast.classList.add('show');
+        btn.textContent = '✅ Sent!';
+        btn.style.background = 'linear-gradient(135deg,#2e7d32,#1b5e20)';
+        btn.style.boxShadow = '0 4px 22px rgba(46,125,50,.4)';
+      }, 700);
     });
 
-    camera.position.x += (tx * 1.8 - camera.position.x) * 0.025;
-    camera.position.y += (-ty * 1.2 - camera.position.y) * 0.025;
+    /* ═══════════════════════════════════════════════════════
+       ICE CREAM VOTING
+    ═══════════════════════════════════════════════════════ */
+    var ICE_VOTES = {
+      'Vanilla': 8, 'Chocolate': 14, 'Strawberry': 6, 'Mango': 11,
+      'Mint Choc Chip': 5, 'Butterscotch': 3, 'Cookies and Cream': 9, 'Pistachio': 4
+    };
+    var EMOJIS = {
+      'Vanilla': '🍨', 'Chocolate': '🍫', 'Strawberry': '🍓', 'Mango': '🥭',
+      'Mint Choc Chip': '🌿', 'Butterscotch': '🧁', 'Cookies and Cream': '🍪', 'Pistachio': '🫒'
+    };
 
-    renderer.render(scene, camera);
-  }
-  animate();
-})();
+    function renderIceBars() {
+      var vals = Object.values(ICE_VOTES);
+      var maxVal = Math.max.apply(null, vals);
+      var sorted = Object.entries(ICE_VOTES).sort(function (a, b) { return b[1] - a[1]; });
+      document.getElementById('iceBars').innerHTML = sorted.map(function (entry) {
+        var name = entry[0], count = entry[1];
+        var pct = (count / maxVal * 100).toFixed(1);
+        return '<div class="ice-bar-row">'
+          + '<span class="ice-bar-label">' + (EMOJIS[name] || '🍦') + ' ' + name + '</span>'
+          + '<div class="ice-bar-track"><div class="ice-bar-fill" style="width:' + pct + '%"></div></div>'
+          + '<span class="ice-bar-count">' + count + '</span>'
+          + '</div>';
+      }).join('');
+    }
 
-/* ═══════════════════════════════════════════════════════
-   HERO LIKE
-═══════════════════════════════════════════════════════ */
-function toggleHeroLike() {
-  var btn   = document.getElementById('heroLikeBtn');
-  var label = document.getElementById('heroLikeLabel');
-  var count = document.getElementById('heroLikeCount');
-  var total = document.getElementById('likeTotal');
-  var heart = btn.querySelector('.heart');
-  var liked = btn.classList.toggle('liked');
-  var n     = parseInt(count.textContent);
+    document.getElementById('iceForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var chosen = this.querySelector('input[name="icecream"]:checked');
+      if (!chosen) { alert('Pick a flavour first! 🍦'); return; }
+      ICE_VOTES[chosen.value] = (ICE_VOTES[chosen.value] || 0) + 1;
+      var btn = document.getElementById('iceSubmitBtn');
+      btn.disabled = true;
+      btn.innerHTML = '🎉 Voted!';
+      document.getElementById('iceToast').classList.add('show');
+      renderIceBars();
+    });
 
-  count.textContent = liked ? n + 1 : n - 1;
-  heart.textContent = liked ? '❤️' : '🤍';
-  label.textContent = liked ? 'Liked!' : 'I loved this workshop!';
-  total.textContent = (liked ? n + 1 : n - 1) + ' attendees liked this session';
-  btn.setAttribute('aria-pressed', liked);
-
-  heart.style.animation = 'none';
-  requestAnimationFrame(function () { heart.style.animation = ''; });
-}
-
-/* ═══════════════════════════════════════════════════════
-   FEEDBACK FORM
-═══════════════════════════════════════════════════════ */
-document.getElementById('feedbackForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var btn   = document.getElementById('feedbackSubmitBtn');
-  var toast = document.getElementById('feedbackToast');
-  btn.disabled    = true;
-  btn.textContent = 'Sending…';
-  setTimeout(function () {
-    toast.classList.add('show');
-    btn.textContent        = '✅ Sent!';
-    btn.style.background   = 'linear-gradient(135deg,#2e7d32,#1b5e20)';
-    btn.style.boxShadow    = '0 4px 22px rgba(46,125,50,.4)';
-  }, 700);
-});
-
-/* ═══════════════════════════════════════════════════════
-   ICE CREAM VOTING
-═══════════════════════════════════════════════════════ */
-var ICE_VOTES = {
-  'Vanilla':8, 'Chocolate':14, 'Strawberry':6,  'Mango':11,
-  'Mint Choc Chip':5, 'Butterscotch':3, 'Cookies and Cream':9, 'Pistachio':4
-};
-var EMOJIS = {
-  'Vanilla':'🍨','Chocolate':'🍫','Strawberry':'🍓','Mango':'🥭',
-  'Mint Choc Chip':'🌿','Butterscotch':'🧁','Cookies and Cream':'🍪','Pistachio':'🫒'
-};
-
-function renderIceBars() {
-  var vals   = Object.values(ICE_VOTES);
-  var maxVal = Math.max.apply(null, vals);
-  var sorted = Object.entries(ICE_VOTES).sort(function (a, b) { return b[1] - a[1]; });
-  document.getElementById('iceBars').innerHTML = sorted.map(function (entry) {
-    var name  = entry[0], count = entry[1];
-    var pct   = (count / maxVal * 100).toFixed(1);
-    return '<div class="ice-bar-row">'
-      + '<span class="ice-bar-label">' + (EMOJIS[name] || '🍦') + ' ' + name + '</span>'
-      + '<div class="ice-bar-track"><div class="ice-bar-fill" style="width:' + pct + '%"></div></div>'
-      + '<span class="ice-bar-count">' + count + '</span>'
-      + '</div>';
-  }).join('');
-}
-
-document.getElementById('iceForm').addEventListener('submit', function (e) {
-  e.preventDefault();
-  var chosen = this.querySelector('input[name="icecream"]:checked');
-  if (!chosen) { alert('Pick a flavour first! 🍦'); return; }
-  ICE_VOTES[chosen.value] = (ICE_VOTES[chosen.value] || 0) + 1;
-  var btn = document.getElementById('iceSubmitBtn');
-  btn.disabled    = true;
-  btn.innerHTML   = '🎉 Voted!';
-  document.getElementById('iceToast').classList.add('show');
-  renderIceBars();
-});
-
-renderIceBars();
-</script>
+    renderIceBars();
+  </script>
 </body>
+
 </html>
